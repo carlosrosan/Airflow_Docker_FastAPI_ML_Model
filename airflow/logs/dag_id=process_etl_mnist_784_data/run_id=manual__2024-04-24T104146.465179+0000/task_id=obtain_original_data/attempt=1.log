@@ -1,0 +1,73 @@
+[2024-04-24T10:41:47.650+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: process_etl_mnist_784_data.obtain_original_data manual__2024-04-24T10:41:46.465179+00:00 [queued]>
+[2024-04-24T10:41:47.656+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: process_etl_mnist_784_data.obtain_original_data manual__2024-04-24T10:41:46.465179+00:00 [queued]>
+[2024-04-24T10:41:47.656+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2024-04-24T10:41:47.664+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonVirtualenvDecoratedOperator): obtain_original_data> on 2024-04-24 10:41:46.465179+00:00
+[2024-04-24T10:41:47.669+0000] {standard_task_runner.py:60} INFO - Started process 1297 to run task
+[2024-04-24T10:41:47.672+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'process_etl_mnist_784_data', 'obtain_original_data', 'manual__2024-04-24T10:41:46.465179+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/etl_process_new.py', '--cfg-path', '/tmp/tmp1fuvtjnz']
+[2024-04-24T10:41:47.673+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask obtain_original_data
+[2024-04-24T10:41:47.708+0000] {task_command.py:423} INFO - Running <TaskInstance: process_etl_mnist_784_data.obtain_original_data manual__2024-04-24T10:41:46.465179+00:00 [running]> on host a2eae1f987eb
+[2024-04-24T10:41:47.759+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Carlos Rodriguez' AIRFLOW_CTX_DAG_ID='process_etl_mnist_784_data' AIRFLOW_CTX_TASK_ID='obtain_original_data' AIRFLOW_CTX_EXECUTION_DATE='2024-04-24T10:41:46.465179+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-24T10:41:46.465179+00:00'
+[2024-04-24T10:41:47.761+0000] {process_utils.py:182} INFO - Executing cmd: /usr/local/bin/python -m virtualenv /tmp/venvbpgsczsk --system-site-packages --python=python
+[2024-04-24T10:41:47.771+0000] {process_utils.py:186} INFO - Output:
+[2024-04-24T10:41:48.426+0000] {process_utils.py:190} INFO - created virtual environment CPython3.8.18.final.0-64 in 339ms
+[2024-04-24T10:41:48.427+0000] {process_utils.py:190} INFO -   creator CPython3Posix(dest=/tmp/venvbpgsczsk, clear=False, no_vcs_ignore=False, global=True)
+[2024-04-24T10:41:48.427+0000] {process_utils.py:190} INFO -   seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/***/.local/share/virtualenv)
+[2024-04-24T10:41:48.427+0000] {process_utils.py:190} INFO -     added seed packages: pip==23.3.1, setuptools==69.0.2, wheel==0.42.0
+[2024-04-24T10:41:48.428+0000] {process_utils.py:190} INFO -   activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+[2024-04-24T10:41:48.497+0000] {process_utils.py:182} INFO - Executing cmd: /tmp/venvbpgsczsk/bin/pip install -r /tmp/venvbpgsczsk/requirements.txt
+[2024-04-24T10:41:48.510+0000] {process_utils.py:186} INFO - Output:
+[2024-04-24T10:41:49.893+0000] {process_utils.py:190} INFO - Collecting awswrangler==3.6.0 (from -r /tmp/venvbpgsczsk/requirements.txt (line 1))
+[2024-04-24T10:41:50.037+0000] {process_utils.py:190} INFO -   Downloading awswrangler-3.6.0-py3-none-any.whl.metadata (23 kB)
+[2024-04-24T10:41:50.077+0000] {process_utils.py:190} INFO - Collecting ucimlrepo==0.0.3 (from -r /tmp/venvbpgsczsk/requirements.txt (line 2))
+[2024-04-24T10:41:50.104+0000] {process_utils.py:190} INFO -   Downloading ucimlrepo-0.0.3-py3-none-any.whl.metadata (5.2 kB)
+[2024-04-24T10:41:50.173+0000] {process_utils.py:190} INFO - Requirement already satisfied: boto3<2.0.0,>=1.20.32 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (1.34.90)
+[2024-04-24T10:41:50.174+0000] {process_utils.py:190} INFO - Requirement already satisfied: botocore<2.0.0,>=1.23.32 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (1.34.90)
+[2024-04-24T10:41:50.175+0000] {process_utils.py:190} INFO - Requirement already satisfied: numpy<2.0,>=1.18 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (1.24.4)
+[2024-04-24T10:41:50.176+0000] {process_utils.py:190} INFO - Requirement already satisfied: packaging<24.0,>=21.1 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (23.2)
+[2024-04-24T10:41:50.177+0000] {process_utils.py:190} INFO - Requirement already satisfied: pandas<2.1.0,>=1.2.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (2.0.3)
+[2024-04-24T10:41:50.178+0000] {process_utils.py:190} INFO - Requirement already satisfied: pyarrow>=7.0.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (14.0.2)
+[2024-04-24T10:41:50.178+0000] {process_utils.py:190} INFO - Requirement already satisfied: typing-extensions<5.0.0,>=4.4.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (4.9.0)
+[2024-04-24T10:41:50.185+0000] {process_utils.py:190} INFO - Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in /home/***/.local/lib/python3.8/site-packages (from boto3<2.0.0,>=1.20.32->awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (0.10.0)
+[2024-04-24T10:41:50.186+0000] {process_utils.py:190} INFO - Requirement already satisfied: s3transfer<0.11.0,>=0.10.0 in /home/***/.local/lib/python3.8/site-packages (from boto3<2.0.0,>=1.20.32->awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (0.10.1)
+[2024-04-24T10:41:50.194+0000] {process_utils.py:190} INFO - Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /home/***/.local/lib/python3.8/site-packages (from botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (2.8.2)
+[2024-04-24T10:41:50.196+0000] {process_utils.py:190} INFO - Requirement already satisfied: urllib3<1.27,>=1.25.4 in /home/***/.local/lib/python3.8/site-packages (from botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (1.26.18)
+[2024-04-24T10:41:50.292+0000] {process_utils.py:190} INFO - Requirement already satisfied: pytz>=2020.1 in /home/***/.local/lib/python3.8/site-packages (from pandas<2.1.0,>=1.2.0->awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (2023.3.post1)
+[2024-04-24T10:41:50.293+0000] {process_utils.py:190} INFO - Requirement already satisfied: tzdata>=2022.1 in /home/***/.local/lib/python3.8/site-packages (from pandas<2.1.0,>=1.2.0->awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (2023.4)
+[2024-04-24T10:41:50.300+0000] {process_utils.py:190} INFO - Requirement already satisfied: six>=1.5 in /home/***/.local/lib/python3.8/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venvbpgsczsk/requirements.txt (line 1)) (1.16.0)
+[2024-04-24T10:41:50.353+0000] {process_utils.py:190} INFO - Downloading awswrangler-3.6.0-py3-none-any.whl (403 kB)
+[2024-04-24T10:41:50.469+0000] {process_utils.py:190} INFO -    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 403.8/403.8 kB 3.6 MB/s eta 0:00:00
+[2024-04-24T10:41:50.470+0000] {process_utils.py:190} INFO - Using cached ucimlrepo-0.0.3-py3-none-any.whl (7.0 kB)
+[2024-04-24T10:41:52.892+0000] {process_utils.py:190} INFO - Installing collected packages: ucimlrepo, awswrangler
+[2024-04-24T10:41:53.079+0000] {process_utils.py:190} INFO - Successfully installed awswrangler-3.6.0 ucimlrepo-0.0.3
+[2024-04-24T10:41:53.229+0000] {process_utils.py:190} INFO - 
+[2024-04-24T10:41:53.230+0000] {process_utils.py:190} INFO - [notice] A new release of pip is available: 23.3.1 -> 24.0
+[2024-04-24T10:41:53.230+0000] {process_utils.py:190} INFO - [notice] To update, run: python -m pip install --upgrade pip
+[2024-04-24T10:41:53.462+0000] {process_utils.py:182} INFO - Executing cmd: /tmp/venvbpgsczsk/bin/python /tmp/venv-callb884g9si/script.py /tmp/venv-callb884g9si/script.in /tmp/venv-callb884g9si/script.out /tmp/venv-callb884g9si/string_args.txt /tmp/venv-callb884g9si/termination.log
+[2024-04-24T10:41:53.471+0000] {process_utils.py:186} INFO - Output:
+[2024-04-24T10:41:55.102+0000] {process_utils.py:190} INFO - Traceback (most recent call last):
+[2024-04-24T10:41:55.103+0000] {process_utils.py:190} INFO -   File "/tmp/venv-callb884g9si/script.py", line 57, in <module>
+[2024-04-24T10:41:55.103+0000] {process_utils.py:190} INFO -     res = get_data(*arg_dict["args"], **arg_dict["kwargs"])
+[2024-04-24T10:41:55.103+0000] {process_utils.py:190} INFO -   File "/tmp/venv-callb884g9si/script.py", line 41, in get_data
+[2024-04-24T10:41:55.104+0000] {process_utils.py:190} INFO -     mnist = fetch_openml('mnist_784', as_frame = False)
+[2024-04-24T10:41:55.104+0000] {process_utils.py:190} INFO - NameError: name 'fetch_openml' is not defined
+[2024-04-24T10:41:55.450+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/decorators/base.py", line 241, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 400, in execute
+    return super().execute(context=serializable_context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 716, in execute_callable
+    result = self._execute_python_callable_in_subprocess(python_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 471, in _execute_python_callable_in_subprocess
+    raise AirflowException(error_msg) from None
+airflow.exceptions.AirflowException: Process returned non-zero exit status 1.
+name 'fetch_openml' is not defined
+[2024-04-24T10:41:55.453+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=process_etl_mnist_784_data, task_id=obtain_original_data, execution_date=20240424T104146, start_date=20240424T104147, end_date=20240424T104155
+[2024-04-24T10:41:55.461+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 4 for task obtain_original_data (Process returned non-zero exit status 1.
+name 'fetch_openml' is not defined; 1297)
+[2024-04-24T10:41:55.502+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-04-24T10:41:55.517+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
