@@ -29,7 +29,7 @@ default_args = {
     dag_id="process_etl_mnist_784_data",
     description="ETL process for mnist_784 data, separating the dataset into training and testing sets.",
     doc_md=markdown_text,
-    tags=["ETL", "mnist_784 Disease"],
+    tags=["ETL", "mnist_784"],
     default_args=default_args,
     catchup=False,
 )
@@ -41,6 +41,7 @@ def process_etl_mnist_784_data():
                       "awswrangler==3.6.0"],
         system_site_packages=True
     )
+    
     def get_data():
         """
         Load the raw data from UCI repository
@@ -56,25 +57,33 @@ def process_etl_mnist_784_data():
         # fetch dataset
         #mnist_784_dataset = fetch_ucirepo(id=45)
 
-        data_path = "s3://data/raw/mnist_784.csv"
-        #dataframe = mnist_784_dataset.data.original
+        try:
 
-        #target_col = Variable.get("target_col_mnist_784")
+            data_path = "s3://data/raw/mnist_784.csv"
+            #dataframe = mnist_784_dataset.data.original
 
-        mnist = fetch_openml('mnist_784', as_frame = False)
+            #target_col = Variable.get("target_col_mnist_784")
 
-        dataframe = pd.DataFrame(mnist.data, columns=mnist.feature_names)
-        target_col = pd.DataFrame(mnist.target, columns=['label'])
+            mnist = fetch_openml('mnist_784', as_frame = False)
 
-        dataframe['label'] = target_col['label']
+            dataframe = pd.DataFrame(mnist.data, columns=mnist.feature_names)
+            target_col = pd.DataFrame(mnist.target, columns=['label'])
 
-        # Replace level of mnist_784 decease to just distinguish presence 
-        # (values 1,2,3,4) from absence (value 0).
-        #dataframe.loc[dataframe[target_col] > 0, target_col] = 1
+            dataframe['label'] = target_col['label']
 
-        wr.s3.to_csv(df=dataframe,
-                     path=data_path,
-                     index=False)
+            # Replace level of mnist_784 decease to just distinguish presence 
+            # (values 1,2,3,4) from absence (value 0).
+            #dataframe.loc[dataframe[target_col] > 0, target_col] = 1
+
+            wr.s3.to_csv(df=dataframe,
+                        path=data_path,
+                        index=False)
+            
+        except botocore.exceptions.ClientError as e:
+                # Something else has gone wrong.
+                print(e)
+                raise e
+
 
 
     @task.virtualenv(
@@ -108,69 +117,81 @@ def process_etl_mnist_784_data():
             wr.s3.to_csv(df=df,
                          path=path,
                          index=False)
+            
+        try:
 
-        data_original_path = "s3://data/raw/mnist_784.csv"
-        #data_end_path = "s3://data/raw/mnist_784_dummies.csv"
-        dataframe = wr.s3.read_csv(data_original_path)
+            data_original_path = "s3://data/raw/mnist_784.csv"
+            #data_end_path = "s3://data/raw/mnist_784_dummies.csv"
+            dataframe = wr.s3.read_csv(data_original_path)
 
-        data_dict = dataframe.to_dict()
+            data_dict = dataframe.to_dict()
 
-        data_string = json.dumps(data_dict, indent=2)
+            data_string = json.dumps(data_dict, indent=2)
 
-        client = boto3.client('s3')
+            client = boto3.client('s3')
 
-        client.put_object(
-            Bucket='data',
-            Key='data_info/mnist_784.json',
-            Body=data_string
-        )
-        
-        X_digits=dataframe.drop(['label'], axis=1).to_numpy()
-        y_digits=dataframe['label'].to_numpy()
+            client.put_object(
+                Bucket='data',
+                Key='data_info/mnist_784.json',
+                Body=data_string
+                #Body=dataframe.columns
+            )
+            
+            X_digits=dataframe.drop(['label'], axis=1).to_numpy()
+            y_digits=dataframe['label'].to_numpy()
 
-        X_train, X_test, y_train, y_test = train_test_split(X_digits,
-                                                        y_digits,
-                                                        test_size=0.3,
-                                                        random_state=32)
-        
-        save_to_csv(X_train, "s3://data/final/train/mnist_784_X_train.csv")
-        save_to_csv(X_test, "s3://data/final/test/mnist_784_X_test.csv")
-        save_to_csv(y_train, "s3://data/final/train/mnist_784_y_train.csv")
-        save_to_csv(y_test, "s3://data/final/test/mnist_784_y_test.csv")
+            X_train, X_test, y_train, y_test = train_test_split(X_digits,
+                                                            y_digits,
+                                                            test_size=0.3,
+                                                            random_state=32)
+            
+            save_to_csv(X_train, "s3://data/final/train/mnist_784_X_train.csv")
+            save_to_csv(X_test, "s3://data/final/test/mnist_784_X_test.csv")
+            save_to_csv(y_train, "s3://data/final/train/mnist_784_y_train.csv")
+            save_to_csv(y_test, "s3://data/final/test/mnist_784_y_test.csv")
 
-        mlflow.set_tracking_uri('http://mlflow:5000')
-        experiment = mlflow.set_experiment("mnist_784 Disease")
+            mlflow.set_tracking_uri('http://mlflow:5000')
+            experiment = mlflow.set_experiment("mnist_784")
 
-        mlflow.start_run(run_name='ETL_run_' + datetime.datetime.today().strftime('%Y/%m/%d-%H:%M:%S"'),
-                         experiment_id=experiment.experiment_id,
-                         tags={"experiment": "etl", "dataset": "mnist_784 disease"},
-                         log_system_metrics=True)
+            mlflow.start_run(run_name='ETL_run_' + datetime.datetime.today().strftime('%Y/%m/%d-%H:%M:%S"'),
+                            experiment_id=experiment.experiment_id,
+                            tags={"experiment": "etl", "dataset": "mnist_784"},
+                            log_system_metrics=True)
 
-        mlflow_dataset = mlflow.data.from_pandas(dataframe,
-                                                 #source="https://archive.ics.uci.edu/dataset/45/mnist_784+disease",
-                                                 source="https://archive.ics.uci.edu/dataset/683/mnist+database+of+handwritten+digits",
-                                                 targets=dataframe['label'],
-                                                 name="mnist_784_data_complete")
+            mlflow_dataset = mlflow.data.from_pandas(dataframe,
+                                                    source="https://archive.ics.uci.edu/dataset/683/mnist+database+of+handwritten+digits",
+                                                    targets=dataframe['label'],
+                                                    name="mnist_784_data_complete")
 
-        mlflow.log_input(mlflow_dataset, context="Dataset")
+            mlflow.log_input(mlflow_dataset, context="Dataset")
 
-        list_run = mlflow.search_runs([experiment.experiment_id], output_format="list")
+            list_run = mlflow.search_runs([experiment.experiment_id], output_format="list")
 
-        tree_clf = DecisionTreeClassifier(criterion = 'entropy', max_depth = 10)
-        tree_clf.fit(X_train, y_train)
-        y_pred = tree_clf.predict(X_test)
-        print(' ')
-        print(f"accuracy_score: {accuracy_score(y_test, y_pred)}")
-        print(f"recall_score: {metrics.recall_score(y_test, y_pred, average = 'macro')}")
-        print(f"f1_score: {metrics.f1_score(y_test, y_pred, average = 'macro')}")
+            tree_clf = DecisionTreeClassifier(criterion = 'entropy', max_depth = 10)
+            tree_clf.fit(X_train, y_train)
+            y_pred = tree_clf.predict(X_test)
+            print(' ')
+            print(f"accuracy_score: {accuracy_score(y_test, y_pred)}")
+            print(f"recall_score: {metrics.recall_score(y_test, y_pred, average = 'macro')}")
+            print(f"f1_score: {metrics.f1_score(y_test, y_pred, average = 'macro')}")
 
-        with mlflow.start_run(run_id=list_run[0].info.run_id):
+            mlflow.set_tracking_uri('http://mlflow:5000')
+            experiment = mlflow.set_experiment("mnist_784")
 
-            mlflow.log_param("Train observations", X_train.shape[0])
-            mlflow.log_param("Test observations", X_test.shape[0])
-            #mlflow.log_param("Standard Scaler feature names", sc_X.feature_names_in_)
-            #mlflow.log_param("Standard Scaler mean values", sc_X.mean_)
-            #mlflow.log_param("Standard Scaler scale values", sc_X.scale_)
+            list_run = mlflow.search_runs([experiment.experiment_id], output_format="list")
+
+            with mlflow.start_run(run_id=list_run[0].info.run_id):
+
+                mlflow.log_param("Train observations", X_train.shape[0])
+                mlflow.log_param("Test observations", X_test.shape[0])
+                #mlflow.log_param("Standard Scaler feature names", sc_X.feature_names_in_)
+                #mlflow.log_param("Standard Scaler mean values", sc_X.mean_)
+                #mlflow.log_param("Standard Scaler scale values", sc_X.scale_)
+
+        except botocore.exceptions.ClientError as e:
+                # Something else has gone wrong.
+                print(e)
+                raise e
 
     get_data() >> train_model()
 

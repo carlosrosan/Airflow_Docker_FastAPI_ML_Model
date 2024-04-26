@@ -1,0 +1,99 @@
+[2024-04-25T04:05:38.369+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: process_etl_mnist_784_data.train_model manual__2024-04-25T03:59:20.218324+00:00 [queued]>
+[2024-04-25T04:05:38.374+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: process_etl_mnist_784_data.train_model manual__2024-04-25T03:59:20.218324+00:00 [queued]>
+[2024-04-25T04:05:38.375+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2024-04-25T04:05:38.383+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonVirtualenvDecoratedOperator): train_model> on 2024-04-25 03:59:20.218324+00:00
+[2024-04-25T04:05:38.386+0000] {standard_task_runner.py:60} INFO - Started process 11708 to run task
+[2024-04-25T04:05:38.388+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'process_etl_mnist_784_data', 'train_model', 'manual__2024-04-25T03:59:20.218324+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/etl_process.py', '--cfg-path', '/tmp/tmpdscw1phe']
+[2024-04-25T04:05:38.389+0000] {standard_task_runner.py:88} INFO - Job 8: Subtask train_model
+[2024-04-25T04:05:38.417+0000] {task_command.py:423} INFO - Running <TaskInstance: process_etl_mnist_784_data.train_model manual__2024-04-25T03:59:20.218324+00:00 [running]> on host b7ac1838226b
+[2024-04-25T04:05:38.461+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Carlos Rodriguez' AIRFLOW_CTX_DAG_ID='process_etl_mnist_784_data' AIRFLOW_CTX_TASK_ID='train_model' AIRFLOW_CTX_EXECUTION_DATE='2024-04-25T03:59:20.218324+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-25T03:59:20.218324+00:00'
+[2024-04-25T04:05:38.462+0000] {process_utils.py:182} INFO - Executing cmd: /usr/local/bin/python -m virtualenv /tmp/venv66lu1sww --system-site-packages --python=python
+[2024-04-25T04:05:38.469+0000] {process_utils.py:186} INFO - Output:
+[2024-04-25T04:05:38.891+0000] {process_utils.py:190} INFO - created virtual environment CPython3.8.18.final.0-64 in 160ms
+[2024-04-25T04:05:38.891+0000] {process_utils.py:190} INFO -   creator CPython3Posix(dest=/tmp/venv66lu1sww, clear=False, no_vcs_ignore=False, global=True)
+[2024-04-25T04:05:38.892+0000] {process_utils.py:190} INFO -   seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/***/.local/share/virtualenv)
+[2024-04-25T04:05:38.892+0000] {process_utils.py:190} INFO -     added seed packages: pip==23.3.1, setuptools==69.0.2, wheel==0.42.0
+[2024-04-25T04:05:38.892+0000] {process_utils.py:190} INFO -   activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+[2024-04-25T04:05:38.912+0000] {process_utils.py:182} INFO - Executing cmd: /tmp/venv66lu1sww/bin/pip install -r /tmp/venv66lu1sww/requirements.txt
+[2024-04-25T04:05:38.917+0000] {process_utils.py:186} INFO - Output:
+[2024-04-25T04:05:39.787+0000] {process_utils.py:190} INFO - Collecting awswrangler==3.6.0 (from -r /tmp/venv66lu1sww/requirements.txt (line 1))
+[2024-04-25T04:05:39.788+0000] {process_utils.py:190} INFO -   Using cached awswrangler-3.6.0-py3-none-any.whl.metadata (23 kB)
+[2024-04-25T04:05:39.818+0000] {process_utils.py:190} INFO - Requirement already satisfied: boto3<2.0.0,>=1.20.32 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (1.34.88)
+[2024-04-25T04:05:39.819+0000] {process_utils.py:190} INFO - Requirement already satisfied: botocore<2.0.0,>=1.23.32 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (1.34.88)
+[2024-04-25T04:05:39.820+0000] {process_utils.py:190} INFO - Requirement already satisfied: numpy<2.0,>=1.18 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (1.24.4)
+[2024-04-25T04:05:39.820+0000] {process_utils.py:190} INFO - Requirement already satisfied: packaging<24.0,>=21.1 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (23.2)
+[2024-04-25T04:05:39.821+0000] {process_utils.py:190} INFO - Requirement already satisfied: pandas<2.1.0,>=1.2.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (2.0.3)
+[2024-04-25T04:05:39.822+0000] {process_utils.py:190} INFO - Requirement already satisfied: pyarrow>=7.0.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (14.0.2)
+[2024-04-25T04:05:39.822+0000] {process_utils.py:190} INFO - Requirement already satisfied: typing-extensions<5.0.0,>=4.4.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (4.9.0)
+[2024-04-25T04:05:39.826+0000] {process_utils.py:190} INFO - Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in /home/***/.local/lib/python3.8/site-packages (from boto3<2.0.0,>=1.20.32->awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (0.10.0)
+[2024-04-25T04:05:39.826+0000] {process_utils.py:190} INFO - Requirement already satisfied: s3transfer<0.11.0,>=0.10.0 in /home/***/.local/lib/python3.8/site-packages (from boto3<2.0.0,>=1.20.32->awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (0.10.1)
+[2024-04-25T04:05:39.831+0000] {process_utils.py:190} INFO - Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /home/***/.local/lib/python3.8/site-packages (from botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (2.8.2)
+[2024-04-25T04:05:39.832+0000] {process_utils.py:190} INFO - Requirement already satisfied: urllib3<1.27,>=1.25.4 in /home/***/.local/lib/python3.8/site-packages (from botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (1.26.18)
+[2024-04-25T04:05:39.890+0000] {process_utils.py:190} INFO - Requirement already satisfied: pytz>=2020.1 in /home/***/.local/lib/python3.8/site-packages (from pandas<2.1.0,>=1.2.0->awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (2023.3.post1)
+[2024-04-25T04:05:39.890+0000] {process_utils.py:190} INFO - Requirement already satisfied: tzdata>=2022.1 in /home/***/.local/lib/python3.8/site-packages (from pandas<2.1.0,>=1.2.0->awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (2023.4)
+[2024-04-25T04:05:39.895+0000] {process_utils.py:190} INFO - Requirement already satisfied: six>=1.5 in /home/***/.local/lib/python3.8/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venv66lu1sww/requirements.txt (line 1)) (1.16.0)
+[2024-04-25T04:05:39.917+0000] {process_utils.py:190} INFO - Using cached awswrangler-3.6.0-py3-none-any.whl (403 kB)
+[2024-04-25T04:05:41.969+0000] {process_utils.py:190} INFO - Installing collected packages: awswrangler
+[2024-04-25T04:05:42.116+0000] {process_utils.py:190} INFO - Successfully installed awswrangler-3.6.0
+[2024-04-25T04:05:42.251+0000] {process_utils.py:190} INFO - 
+[2024-04-25T04:05:42.251+0000] {process_utils.py:190} INFO - [notice] A new release of pip is available: 23.3.1 -> 24.0
+[2024-04-25T04:05:42.252+0000] {process_utils.py:190} INFO - [notice] To update, run: python -m pip install --upgrade pip
+[2024-04-25T04:05:42.359+0000] {process_utils.py:182} INFO - Executing cmd: /tmp/venv66lu1sww/bin/python /tmp/venv-calljnum9tei/script.py /tmp/venv-calljnum9tei/script.in /tmp/venv-calljnum9tei/script.out /tmp/venv-calljnum9tei/string_args.txt /tmp/venv-calljnum9tei/termination.log
+[2024-04-25T04:05:42.364+0000] {process_utils.py:186} INFO - Output:
+[2024-04-25T04:05:44.278+0000] {process_utils.py:190} INFO - [[34m2024-04-25T04:05:44.278+0000[0m] {[34mcredentials.py:[0m1147} INFO[0m - Found credentials in environment variables.[0m
+[2024-04-25T04:05:44.317+0000] {process_utils.py:190} INFO - [[34m2024-04-25T04:05:44.316+0000[0m] {[34mconfigprovider.py:[0m957} INFO[0m - Found endpoint for s3 via: environment_service.[0m
+[2024-04-25T04:05:48.144+0000] {process_utils.py:190} INFO - [[34m2024-04-25T04:05:48.144+0000[0m] {[34mcredentials.py:[0m1147} INFO[0m - Found credentials in environment variables.[0m
+[2024-04-25T04:05:48.193+0000] {process_utils.py:190} INFO - [[34m2024-04-25T04:05:48.193+0000[0m] {[34mconfigprovider.py:[0m957} INFO[0m - Found endpoint for s3 via: environment_service.[0m
+[2024-04-25T04:05:48.198+0000] {process_utils.py:190} INFO - Traceback (most recent call last):
+[2024-04-25T04:05:48.199+0000] {process_utils.py:190} INFO -   File "/tmp/venv-calljnum9tei/script.py", line 127, in <module>
+[2024-04-25T04:05:48.199+0000] {process_utils.py:190} INFO -     res = train_model(*arg_dict["args"], **arg_dict["kwargs"])
+[2024-04-25T04:05:48.199+0000] {process_utils.py:190} INFO -   File "/tmp/venv-calljnum9tei/script.py", line 64, in train_model
+[2024-04-25T04:05:48.200+0000] {process_utils.py:190} INFO -     client.put_object(
+[2024-04-25T04:05:48.200+0000] {process_utils.py:190} INFO -   File "/home/***/.local/lib/python3.8/site-packages/botocore/client.py", line 565, in _api_call
+[2024-04-25T04:05:48.200+0000] {process_utils.py:190} INFO -     return self._make_api_call(operation_name, kwargs)
+[2024-04-25T04:05:48.200+0000] {process_utils.py:190} INFO -   File "/home/***/.local/lib/python3.8/site-packages/botocore/client.py", line 974, in _make_api_call
+[2024-04-25T04:05:48.200+0000] {process_utils.py:190} INFO -     request_dict = self._convert_to_request_dict(
+[2024-04-25T04:05:48.201+0000] {process_utils.py:190} INFO -   File "/home/***/.local/lib/python3.8/site-packages/botocore/client.py", line 1048, in _convert_to_request_dict
+[2024-04-25T04:05:48.201+0000] {process_utils.py:190} INFO -     request_dict = self._serializer.serialize_to_request(
+[2024-04-25T04:05:48.201+0000] {process_utils.py:190} INFO -   File "/home/***/.local/lib/python3.8/site-packages/botocore/validate.py", line 381, in serialize_to_request
+[2024-04-25T04:05:48.201+0000] {process_utils.py:190} INFO -     raise ParamValidationError(report=report.generate_report())
+[2024-04-25T04:05:48.202+0000] {process_utils.py:190} INFO - botocore.exceptions.ParamValidationError: Parameter validation failed:
+[2024-04-25T04:05:48.202+0000] {process_utils.py:190} INFO - Invalid type for parameter Body, value: Index(['pixel1', 'pixel2', 'pixel3', 'pixel4', 'pixel5', 'pixel6', 'pixel7',
+[2024-04-25T04:05:48.202+0000] {process_utils.py:190} INFO -        'pixel8', 'pixel9', 'pixel10',
+[2024-04-25T04:05:48.202+0000] {process_utils.py:190} INFO -        ...
+[2024-04-25T04:05:48.202+0000] {process_utils.py:190} INFO -        'pixel776', 'pixel777', 'pixel778', 'pixel779', 'pixel780', 'pixel781',
+[2024-04-25T04:05:48.203+0000] {process_utils.py:190} INFO -        'pixel782', 'pixel783', 'pixel784', 'label'],
+[2024-04-25T04:05:48.203+0000] {process_utils.py:190} INFO -       dtype='object', length=785), type: <class 'pandas.core.indexes.base.Index'>, valid types: <class 'bytes'>, <class 'bytearray'>, file-like object
+[2024-04-25T04:05:48.689+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/decorators/base.py", line 241, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 400, in execute
+    return super().execute(context=serializable_context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 716, in execute_callable
+    result = self._execute_python_callable_in_subprocess(python_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 471, in _execute_python_callable_in_subprocess
+    raise AirflowException(error_msg) from None
+airflow.exceptions.AirflowException: Process returned non-zero exit status 1.
+Parameter validation failed:
+Invalid type for parameter Body, value: Index(['pixel1', 'pixel2', 'pixel3', 'pixel4', 'pixel5', 'pixel6', 'pixel7',
+       'pixel8', 'pixel9', 'pixel10',
+       ...
+       'pixel776', 'pixel777', 'pixel778', 'pixel779', 'pixel780', 'pixel781',
+       'pixel782', 'pixel783', 'pixel784', 'label'],
+      dtype='object', length=785), type: <class 'pandas.core.indexes.base.Index'>, valid types: <class 'bytes'>, <class 'bytearray'>, file-like object
+[2024-04-25T04:05:48.691+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=process_etl_mnist_784_data, task_id=train_model, execution_date=20240425T035920, start_date=20240425T040538, end_date=20240425T040548
+[2024-04-25T04:05:48.699+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 8 for task train_model (Process returned non-zero exit status 1.
+Parameter validation failed:
+Invalid type for parameter Body, value: Index(['pixel1', 'pixel2', 'pixel3', 'pixel4', 'pixel5', 'pixel6', 'pixel7',
+       'pixel8', 'pixel9', 'pixel10',
+       ...
+       'pixel776', 'pixel777', 'pixel778', 'pixel779', 'pixel780', 'pixel781',
+       'pixel782', 'pixel783', 'pixel784', 'label'],
+      dtype='object', length=785), type: <class 'pandas.core.indexes.base.Index'>, valid types: <class 'bytes'>, <class 'bytearray'>, file-like object; 11708)
+[2024-04-25T04:05:48.720+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-04-25T04:05:48.730+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

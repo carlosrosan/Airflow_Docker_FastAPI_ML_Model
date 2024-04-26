@@ -3,7 +3,7 @@ import datetime
 from airflow.decorators import dag, task
 
 markdown_text = """
-### Re-Train the Model for mnist_784 Disease Data
+### Re-Train the Model for mnist_784 Data
 
 This DAG re-trains the model based on new data, tests the previous model, and put in production the new one 
 if it performs  better than the old one. It uses the F1 score to evaluate the model with the test data.
@@ -24,7 +24,7 @@ default_args = {
     description="Re-train the model based on new data, tests the previous model, and put in production the new one if "
                 "it performs better than the old one",
     doc_md=markdown_text,
-    tags=["Re-Train", "mnist_784 Disease"],
+    tags=["Re-Train", "mnist_784"],
     default_args=default_args,
     catchup=False,
 )
@@ -75,7 +75,7 @@ def processing_dag():
 
             mlflow.start_run(run_name='Challenger_run_' + datetime.datetime.today().strftime('%Y/%m/%d-%H:%M:%S"'),
                              experiment_id=experiment.experiment_id,
-                             tags={"experiment": "challenger models", "dataset": "mnist_784 disease"},
+                             tags={"experiment": "challenger models", "dataset": "mnist_784"},
                              log_system_metrics=True)
 
             params = model.get_params()

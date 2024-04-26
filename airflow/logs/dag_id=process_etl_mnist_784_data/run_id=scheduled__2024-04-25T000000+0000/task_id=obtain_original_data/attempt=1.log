@@ -1,0 +1,51 @@
+[2024-04-26T09:27:24.913+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: process_etl_mnist_784_data.obtain_original_data scheduled__2024-04-25T00:00:00+00:00 [queued]>
+[2024-04-26T09:27:24.917+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: process_etl_mnist_784_data.obtain_original_data scheduled__2024-04-25T00:00:00+00:00 [queued]>
+[2024-04-26T09:27:24.917+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2024-04-26T09:27:24.925+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonVirtualenvDecoratedOperator): obtain_original_data> on 2024-04-25 00:00:00+00:00
+[2024-04-26T09:27:24.929+0000] {standard_task_runner.py:60} INFO - Started process 86691 to run task
+[2024-04-26T09:27:24.933+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'process_etl_mnist_784_data', 'obtain_original_data', 'scheduled__2024-04-25T00:00:00+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/etl_process.py', '--cfg-path', '/tmp/tmp2r8fxl5r']
+[2024-04-26T09:27:24.934+0000] {standard_task_runner.py:88} INFO - Job 8: Subtask obtain_original_data
+[2024-04-26T09:27:24.968+0000] {task_command.py:423} INFO - Running <TaskInstance: process_etl_mnist_784_data.obtain_original_data scheduled__2024-04-25T00:00:00+00:00 [running]> on host b1d103f3af44
+[2024-04-26T09:27:25.015+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Carlos Rodriguez' AIRFLOW_CTX_DAG_ID='process_etl_mnist_784_data' AIRFLOW_CTX_TASK_ID='obtain_original_data' AIRFLOW_CTX_EXECUTION_DATE='2024-04-25T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-04-25T00:00:00+00:00'
+[2024-04-26T09:27:25.017+0000] {process_utils.py:182} INFO - Executing cmd: /usr/local/bin/python -m virtualenv /tmp/venvexp3apmi --system-site-packages --python=python
+[2024-04-26T09:27:25.025+0000] {process_utils.py:186} INFO - Output:
+[2024-04-26T09:27:25.610+0000] {process_utils.py:190} INFO - created virtual environment CPython3.8.18.final.0-64 in 281ms
+[2024-04-26T09:27:25.611+0000] {process_utils.py:190} INFO -   creator CPython3Posix(dest=/tmp/venvexp3apmi, clear=False, no_vcs_ignore=False, global=True)
+[2024-04-26T09:27:25.611+0000] {process_utils.py:190} INFO -   seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/***/.local/share/virtualenv)
+[2024-04-26T09:27:25.612+0000] {process_utils.py:190} INFO -     added seed packages: pip==24.0, setuptools==69.2.0, wheel==0.43.0
+[2024-04-26T09:27:25.612+0000] {process_utils.py:190} INFO -   activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+[2024-04-26T09:27:25.633+0000] {process_utils.py:182} INFO - Executing cmd: /tmp/venvexp3apmi/bin/pip install -r /tmp/venvexp3apmi/requirements.txt
+[2024-04-26T09:27:25.639+0000] {process_utils.py:186} INFO - Output:
+[2024-04-26T09:27:27.291+0000] {process_utils.py:190} INFO - Collecting awswrangler==3.6.0 (from -r /tmp/venvexp3apmi/requirements.txt (line 1))
+[2024-04-26T09:27:27.294+0000] {process_utils.py:190} INFO -   Using cached awswrangler-3.6.0-py3-none-any.whl.metadata (23 kB)
+[2024-04-26T09:27:27.465+0000] {process_utils.py:190} INFO - Collecting ucimlrepo==0.0.3 (from -r /tmp/venvexp3apmi/requirements.txt (line 2))
+[2024-04-26T09:27:27.466+0000] {process_utils.py:190} INFO -   Using cached ucimlrepo-0.0.3-py3-none-any.whl.metadata (5.2 kB)
+[2024-04-26T09:27:27.498+0000] {process_utils.py:190} INFO - Requirement already satisfied: boto3<2.0.0,>=1.20.32 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (1.34.88)
+[2024-04-26T09:27:27.499+0000] {process_utils.py:190} INFO - Requirement already satisfied: botocore<2.0.0,>=1.23.32 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (1.34.88)
+[2024-04-26T09:27:27.500+0000] {process_utils.py:190} INFO - Requirement already satisfied: numpy<2.0,>=1.18 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (1.24.4)
+[2024-04-26T09:27:27.500+0000] {process_utils.py:190} INFO - Requirement already satisfied: packaging<24.0,>=21.1 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (23.2)
+[2024-04-26T09:27:27.501+0000] {process_utils.py:190} INFO - Requirement already satisfied: pandas<2.1.0,>=1.2.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (2.0.3)
+[2024-04-26T09:27:27.502+0000] {process_utils.py:190} INFO - Requirement already satisfied: pyarrow>=7.0.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (14.0.2)
+[2024-04-26T09:27:27.503+0000] {process_utils.py:190} INFO - Requirement already satisfied: typing-extensions<5.0.0,>=4.4.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (4.9.0)
+[2024-04-26T09:27:27.508+0000] {process_utils.py:190} INFO - Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in /home/***/.local/lib/python3.8/site-packages (from boto3<2.0.0,>=1.20.32->awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (0.10.0)
+[2024-04-26T09:27:27.508+0000] {process_utils.py:190} INFO - Requirement already satisfied: s3transfer<0.11.0,>=0.10.0 in /home/***/.local/lib/python3.8/site-packages (from boto3<2.0.0,>=1.20.32->awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (0.10.1)
+[2024-04-26T09:27:27.513+0000] {process_utils.py:190} INFO - Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /home/***/.local/lib/python3.8/site-packages (from botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (2.8.2)
+[2024-04-26T09:27:27.514+0000] {process_utils.py:190} INFO - Requirement already satisfied: urllib3<1.27,>=1.25.4 in /home/***/.local/lib/python3.8/site-packages (from botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (1.26.18)
+[2024-04-26T09:27:27.576+0000] {process_utils.py:190} INFO - Requirement already satisfied: pytz>=2020.1 in /home/***/.local/lib/python3.8/site-packages (from pandas<2.1.0,>=1.2.0->awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (2023.3.post1)
+[2024-04-26T09:27:27.576+0000] {process_utils.py:190} INFO - Requirement already satisfied: tzdata>=2022.1 in /home/***/.local/lib/python3.8/site-packages (from pandas<2.1.0,>=1.2.0->awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (2023.4)
+[2024-04-26T09:27:27.583+0000] {process_utils.py:190} INFO - Requirement already satisfied: six>=1.5 in /home/***/.local/lib/python3.8/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venvexp3apmi/requirements.txt (line 1)) (1.16.0)
+[2024-04-26T09:27:27.630+0000] {process_utils.py:190} INFO - Using cached awswrangler-3.6.0-py3-none-any.whl (403 kB)
+[2024-04-26T09:27:27.685+0000] {process_utils.py:190} INFO - Using cached ucimlrepo-0.0.3-py3-none-any.whl (7.0 kB)
+[2024-04-26T09:27:29.964+0000] {process_utils.py:190} INFO - Installing collected packages: ucimlrepo, awswrangler
+[2024-04-26T09:27:30.411+0000] {process_utils.py:190} INFO - Successfully installed awswrangler-3.6.0 ucimlrepo-0.0.3
+[2024-04-26T09:27:30.691+0000] {process_utils.py:182} INFO - Executing cmd: /tmp/venvexp3apmi/bin/python /tmp/venv-call9jbu80kc/script.py /tmp/venv-call9jbu80kc/script.in /tmp/venv-call9jbu80kc/script.out /tmp/venv-call9jbu80kc/string_args.txt /tmp/venv-call9jbu80kc/termination.log
+[2024-04-26T09:27:30.697+0000] {process_utils.py:186} INFO - Output:
+[2024-04-26T09:27:33.586+0000] {process_utils.py:190} INFO - /home/***/.local/lib/python3.8/site-packages/sklearn/datasets/_openml.py:1022 FutureWarning: The default value of `parser` will change from `'liac-arff'` to `'auto'` in 1.4. You can set `parser='auto'` to silence this warning. Therefore, an `ImportError` will be raised from 1.4 if the dataset is dense and pandas is not installed. Note that the pandas parser may return different data types. See the Notes Section in fetch_openml's API doc for details.
+[2024-04-26T09:27:47.872+0000] {process_utils.py:190} INFO - [[34m2024-04-26T09:27:47.872+0000[0m] {[34mcredentials.py:[0m1147} INFO[0m - Found credentials in environment variables.[0m
+[2024-04-26T09:27:48.002+0000] {process_utils.py:190} INFO - [[34m2024-04-26T09:27:48.002+0000[0m] {[34mconfigprovider.py:[0m957} INFO[0m - Found endpoint for s3 via: environment_service.[0m
+[2024-04-26T09:28:15.654+0000] {process_utils.py:190} INFO - [[34m2024-04-26T09:28:15.653+0000[0m] {[34mconnectionpool.py:[0m323} WARNING[0m - Connection pool is full, discarding connection: s3. Connection pool size: 10[0m
+[2024-04-26T09:28:15.875+0000] {process_utils.py:190} INFO - [[34m2024-04-26T09:28:15.874+0000[0m] {[34mconnectionpool.py:[0m323} WARNING[0m - Connection pool is full, discarding connection: s3. Connection pool size: 10[0m
+[2024-04-26T09:28:29.102+0000] {python.py:201} INFO - Done. Returned value was: None
+[2024-04-26T09:28:29.111+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=process_etl_mnist_784_data, task_id=obtain_original_data, execution_date=20240425T000000, start_date=20240426T092724, end_date=20240426T092829
+[2024-04-26T09:28:29.158+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-04-26T09:28:29.172+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

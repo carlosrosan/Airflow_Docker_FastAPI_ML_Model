@@ -1,0 +1,75 @@
+[2024-04-25T20:15:35.712+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: process_etl_mnist_784_data.train_model manual__2024-04-25T19:59:29.608592+00:00 [queued]>
+[2024-04-25T20:15:35.717+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: process_etl_mnist_784_data.train_model manual__2024-04-25T19:59:29.608592+00:00 [queued]>
+[2024-04-25T20:15:35.717+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2024-04-25T20:15:35.847+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonVirtualenvDecoratedOperator): train_model> on 2024-04-25 19:59:29.608592+00:00
+[2024-04-25T20:15:35.851+0000] {standard_task_runner.py:60} INFO - Started process 12544 to run task
+[2024-04-25T20:15:35.853+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'process_etl_mnist_784_data', 'train_model', 'manual__2024-04-25T19:59:29.608592+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/etl_process.py', '--cfg-path', '/tmp/tmp70ec5guv']
+[2024-04-25T20:15:35.854+0000] {standard_task_runner.py:88} INFO - Job 7: Subtask train_model
+[2024-04-25T20:15:35.883+0000] {task_command.py:423} INFO - Running <TaskInstance: process_etl_mnist_784_data.train_model manual__2024-04-25T19:59:29.608592+00:00 [running]> on host fc2c8bd597e1
+[2024-04-25T20:15:35.927+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Carlos Rodriguez' AIRFLOW_CTX_DAG_ID='process_etl_mnist_784_data' AIRFLOW_CTX_TASK_ID='train_model' AIRFLOW_CTX_EXECUTION_DATE='2024-04-25T19:59:29.608592+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-04-25T19:59:29.608592+00:00'
+[2024-04-25T20:15:35.928+0000] {process_utils.py:182} INFO - Executing cmd: /usr/local/bin/python -m virtualenv /tmp/venvd4wh4jbd --system-site-packages --python=python
+[2024-04-25T20:15:35.934+0000] {process_utils.py:186} INFO - Output:
+[2024-04-25T20:15:36.583+0000] {process_utils.py:190} INFO - created virtual environment CPython3.8.18.final.0-64 in 342ms
+[2024-04-25T20:15:36.583+0000] {process_utils.py:190} INFO -   creator CPython3Posix(dest=/tmp/venvd4wh4jbd, clear=False, no_vcs_ignore=False, global=True)
+[2024-04-25T20:15:36.583+0000] {process_utils.py:190} INFO -   seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/home/***/.local/share/virtualenv)
+[2024-04-25T20:15:36.584+0000] {process_utils.py:190} INFO -     added seed packages: pip==23.3.1, setuptools==69.0.2, wheel==0.42.0
+[2024-04-25T20:15:36.585+0000] {process_utils.py:190} INFO -   activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+[2024-04-25T20:15:36.608+0000] {process_utils.py:182} INFO - Executing cmd: /tmp/venvd4wh4jbd/bin/pip install -r /tmp/venvd4wh4jbd/requirements.txt
+[2024-04-25T20:15:36.614+0000] {process_utils.py:186} INFO - Output:
+[2024-04-25T20:15:37.880+0000] {process_utils.py:190} INFO - Collecting awswrangler==3.6.0 (from -r /tmp/venvd4wh4jbd/requirements.txt (line 1))
+[2024-04-25T20:15:37.882+0000] {process_utils.py:190} INFO -   Using cached awswrangler-3.6.0-py3-none-any.whl.metadata (23 kB)
+[2024-04-25T20:15:37.920+0000] {process_utils.py:190} INFO - Requirement already satisfied: boto3<2.0.0,>=1.20.32 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (1.34.88)
+[2024-04-25T20:15:37.921+0000] {process_utils.py:190} INFO - Requirement already satisfied: botocore<2.0.0,>=1.23.32 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (1.34.88)
+[2024-04-25T20:15:37.922+0000] {process_utils.py:190} INFO - Requirement already satisfied: numpy<2.0,>=1.18 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (1.24.4)
+[2024-04-25T20:15:37.923+0000] {process_utils.py:190} INFO - Requirement already satisfied: packaging<24.0,>=21.1 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (23.2)
+[2024-04-25T20:15:37.924+0000] {process_utils.py:190} INFO - Requirement already satisfied: pandas<2.1.0,>=1.2.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (2.0.3)
+[2024-04-25T20:15:37.924+0000] {process_utils.py:190} INFO - Requirement already satisfied: pyarrow>=7.0.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (14.0.2)
+[2024-04-25T20:15:37.925+0000] {process_utils.py:190} INFO - Requirement already satisfied: typing-extensions<5.0.0,>=4.4.0 in /home/***/.local/lib/python3.8/site-packages (from awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (4.9.0)
+[2024-04-25T20:15:37.929+0000] {process_utils.py:190} INFO - Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in /home/***/.local/lib/python3.8/site-packages (from boto3<2.0.0,>=1.20.32->awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (0.10.0)
+[2024-04-25T20:15:37.929+0000] {process_utils.py:190} INFO - Requirement already satisfied: s3transfer<0.11.0,>=0.10.0 in /home/***/.local/lib/python3.8/site-packages (from boto3<2.0.0,>=1.20.32->awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (0.10.1)
+[2024-04-25T20:15:37.934+0000] {process_utils.py:190} INFO - Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /home/***/.local/lib/python3.8/site-packages (from botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (2.8.2)
+[2024-04-25T20:15:37.935+0000] {process_utils.py:190} INFO - Requirement already satisfied: urllib3<1.27,>=1.25.4 in /home/***/.local/lib/python3.8/site-packages (from botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (1.26.18)
+[2024-04-25T20:15:37.994+0000] {process_utils.py:190} INFO - Requirement already satisfied: pytz>=2020.1 in /home/***/.local/lib/python3.8/site-packages (from pandas<2.1.0,>=1.2.0->awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (2023.3.post1)
+[2024-04-25T20:15:37.994+0000] {process_utils.py:190} INFO - Requirement already satisfied: tzdata>=2022.1 in /home/***/.local/lib/python3.8/site-packages (from pandas<2.1.0,>=1.2.0->awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (2023.4)
+[2024-04-25T20:15:38.000+0000] {process_utils.py:190} INFO - Requirement already satisfied: six>=1.5 in /home/***/.local/lib/python3.8/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<2.0.0,>=1.23.32->awswrangler==3.6.0->-r /tmp/venvd4wh4jbd/requirements.txt (line 1)) (1.16.0)
+[2024-04-25T20:15:38.027+0000] {process_utils.py:190} INFO - Using cached awswrangler-3.6.0-py3-none-any.whl (403 kB)
+[2024-04-25T20:15:40.202+0000] {process_utils.py:190} INFO - Installing collected packages: awswrangler
+[2024-04-25T20:15:40.478+0000] {process_utils.py:190} INFO - Successfully installed awswrangler-3.6.0
+[2024-04-25T20:15:40.643+0000] {process_utils.py:190} INFO - 
+[2024-04-25T20:15:40.644+0000] {process_utils.py:190} INFO - [notice] A new release of pip is available: 23.3.1 -> 24.0
+[2024-04-25T20:15:40.644+0000] {process_utils.py:190} INFO - [notice] To update, run: python -m pip install --upgrade pip
+[2024-04-25T20:15:40.792+0000] {process_utils.py:182} INFO - Executing cmd: /tmp/venvd4wh4jbd/bin/python /tmp/venv-callm4v6hqlk/script.py /tmp/venv-callm4v6hqlk/script.in /tmp/venv-callm4v6hqlk/script.out /tmp/venv-callm4v6hqlk/string_args.txt /tmp/venv-callm4v6hqlk/termination.log
+[2024-04-25T20:15:40.798+0000] {process_utils.py:186} INFO - Output:
+[2024-04-25T20:15:44.080+0000] {process_utils.py:190} INFO - [[34m2024-04-25T20:15:44.079+0000[0m] {[34mcredentials.py:[0m1147} INFO[0m - Found credentials in environment variables.[0m
+[2024-04-25T20:15:44.144+0000] {process_utils.py:190} INFO - [[34m2024-04-25T20:15:44.144+0000[0m] {[34mconfigprovider.py:[0m957} INFO[0m - Found endpoint for s3 via: environment_service.[0m
+[2024-04-25T20:21:44.231+0000] {local_task_job_runner.py:121} ERROR - Received SIGTERM. Terminating subprocesses
+[2024-04-25T20:21:45.218+0000] {process_utils.py:131} INFO - Sending 15 to group 12544. PIDs of all processes in the group: [12605, 12544]
+[2024-04-25T20:21:45.231+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 12544
+[2024-04-25T20:21:45.365+0000] {taskinstance.py:2450} ERROR - Received SIGTERM. Terminating subprocesses.
+[2024-04-25T20:21:45.701+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=12605, status='terminated', started='20:15:40') (12605) terminated with exit code None
+[2024-04-25T20:21:46.966+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/decorators/base.py", line 241, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 400, in execute
+    return super().execute(context=serializable_context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 716, in execute_callable
+    result = self._execute_python_callable_in_subprocess(python_path)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 454, in _execute_python_callable_in_subprocess
+    execute_in_subprocess(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/process_utils.py", line 171, in execute_in_subprocess
+    execute_in_subprocess_with_kwargs(cmd, cwd=cwd)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/process_utils.py", line 189, in execute_in_subprocess_with_kwargs
+    for line in iter(proc.stdout.readline, b""):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2452, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+[2024-04-25T20:21:47.151+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=process_etl_mnist_784_data, task_id=train_model, execution_date=20240425T195929, start_date=20240425T201535, end_date=20240425T202147
+[2024-04-25T20:21:47.759+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 7 for task train_model (Task received SIGTERM signal; 12544)
+[2024-04-25T20:21:47.879+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=12544, status='terminated', exitcode=1, started='20:15:35') (12544) terminated with exit code 1
+[2024-04-25T20:21:47.901+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 143
+[2024-04-25T20:21:48.501+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
