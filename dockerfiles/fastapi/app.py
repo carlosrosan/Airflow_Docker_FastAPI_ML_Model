@@ -153,29 +153,3 @@ def predict(img: Item):
     prediction = model.predict(np.array(img.img).reshape(1, -1))[0]
 
     return JSONResponse(content=jsonable_encoder(prediction))
-
-
-@app.post("/predict/", response_model=ModelOutput)
-def predict(
-    input_img_array: Annotated[
-        ModelInput,
-        Body(embed=True),
-    ],
-    background_tasks: BackgroundTasks
-):
-    """
-    Endpoint for predicting heart disease.
-
-    This endpoint receives features related to a patient's health and predicts whether the patient has heart disease
-    or not using a trained model. It returns the prediction result in both integer and string formats.
-    """
-    print('input_img_array')
-    print(input_img_array)
-    
-    prediction = model.predict(np.array(input_img_array).reshape(1, -1))[0]
-
-    # Check if the model has changed asynchronously
-    background_tasks.add_task(check_model)
-
-    # Return the prediction result
-    return ModelOutput(int_output=bool(prediction))
